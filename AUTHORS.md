@@ -1,6 +1,5 @@
-# Authors
+# 作者
 
-- tietouaming - project owner and primary author.
+- tietouaming - 项目所有者与主要作者。
 
-Contributors may be acknowledged here after their contributions are accepted under the
-repository's authorization-required terms.
+贡献者在其贡献被接受且符合本仓库授权条款后，可记录在此文件中。

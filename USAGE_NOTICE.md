@@ -1,16 +1,9 @@
-# Usage Notice
+# 使用声明
 
-Research Orbit is public for visibility, review, and archival demonstration. Public
-visibility does not grant permission to use, copy, modify, redistribute, commercialize,
-train models on, or derive work from this repository.
+Research Orbit 公开可见，仅用于展示、审阅、归档和授权范围内的协作讨论。公开可见不代表允许使用、复制、修改、再分发、商用、训练模型、纳入数据集或制作衍生作品。
 
-Any use, commercial use, modification, redistribution, model training, dataset inclusion,
-teaching use, or derivative work requires explicit authorization from the author.
+任何使用、商用、修改、教学使用、模型训练、数据集收录、二次分发或衍生工作，都必须事先获得作者本人明确授权。
 
-The repository intentionally contains only desensitized examples, reusable workflow code,
-small documentation, and tests. It must not contain private application drafts, raw
-research models, unredacted logs, credentials, personal paths, or large simulation outputs.
+本仓库只应包含脱敏示例、通用 workflow 代码、小型文档、测试和公开示例输出。不得提交私有申请材料、原始科研模型、未脱敏日志、凭据、本机路径或大型仿真结果。
 
-Generated application packs are local private drafts. They are written to ignored
-directories such as `.local_private/application_pack/` and must be manually reviewed before
-any external submission.
+本地生成的申请材料属于私有草稿，默认写入 `.local_private/application_pack/`，必须保持在 Git 忽略目录中。

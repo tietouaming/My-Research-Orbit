@@ -1,44 +1,35 @@
-# Security And Redaction
+# 安全与脱敏
 
-Research Orbit assumes research work contains private documents, unpublished models,
-credentials, local paths, account identifiers, and large result files. The public
-repository must contain only desensitized examples, code, workflow specs, tests, and
-documentation.
+Research Orbit 假设科研工作中包含私有文档、未公开模型、真实路径、日志和密钥，因此默认采用本地优先和最小公开原则。
 
-## Do Not Commit
+## 禁止提交
 
-- Raw `.mph` or `.mphbin` files.
-- HDF5, NPZ, VTU, XDMF, PNG, GIF, or other large solver/result files.
-- Account names, passwords, tokens, API keys, secrets, or private certificates.
-- Full local absolute paths.
-- Original manuscripts, PDFs, Zotero exports, private Word drafts, or raw MathType data.
-- Generated private application packs.
+- 原始 `.mph` 或 `.mphbin`；
+- HDF5、NPZ、VTU、XDMF、PNG、GIF 或大型 solver/result 文件；
+- 账号、密码、token、API key、secret、证书；
+- 完整本机绝对路径；
+- 未脱敏操作日志；
+- `.local_private/` 下的本地申请材料。
 
-## Public Visibility Is Not Authorization
+## Redaction Audit
 
-Public visibility does not grant permission to use, copy, modify, commercialize, train
-models on, redistribute, cite, or derive work from this repository. Any such use requires
-explicit authorization from the author.
-
-## Audit Command
+运行：
 
 ```powershell
 research-orbit audit-redaction --input examples --output outputs/redaction_report.md
 ```
 
-The audit checks local UTF-8 text for:
+该命令只在本地扫描，不上传、不调用外部 provider。
 
-- Windows and Unix absolute paths
-- API key, token, secret, password, authorization patterns
-- email addresses
-- phone-like numeric identifiers
-- private or large research file extensions
+## 检测类型
 
-The audit is local-only. It does not upload files and does not call any model provider.
+- Windows 路径；
+- Unix 路径；
+- API key、token、secret、password、authorization；
+- 邮箱；
+- 手机号；
+- `.mph`、`.mphbin`、`.h5`、`.hdf5`、`.npz`、`.vtu`、`.xdmf`、`.png`、`.gif`、`.pem`、`.key`、`.token`、`.env` 等扩展名。
 
-## Provider Safety
+## 授权原则
 
-`dry-run` is the default. Real providers require explicit environment configuration.
-Private application materials or unredacted logs should not be sent to an external
-provider unless the user intentionally supplies the material and selects a configured
-provider.
+公开可见不等于授权使用。任何使用、复制、商用、训练、二次分发或改动本仓库，均须获得作者本人明确授权。

@@ -1,29 +1,31 @@
-# GitHub Proof Materials Guide
+# GitHub 证明材料指南
 
-Public proof material should show that Research Orbit is a real, runnable project without
-exposing private research assets.
+公开证明材料应展示 Research Orbit 是真实可运行项目，同时避免泄露私有科研材料。
 
-Good public proof:
+## 可以展示
 
-- Project README with install and CLI commands.
-- Python package under `src/research_orbit/`.
-- Workflow YAML files under `workflows/`.
-- Desensitized examples under `examples/`.
-- Tests under `tests/`.
-- CI workflow under `.github/workflows/research-orbit-ci.yml`.
-- Documentation for architecture, providers, safety, roadmap, and evaluation.
+- README、docs、workflow YAML；
+- Python package 与 CLI；
+- tests 与 CI；
+- 脱敏 examples；
+- 公开 outputs；
+- provider-neutral 架构说明；
+- redaction 与 `.gitignore` 安全规则。
 
-Do not publish:
+## 不得展示
 
-- Generated private application packs.
-- Raw `.mph`, `.mphbin`, HDF5, NPZ, VTU, XDMF, PNG, GIF, or other large result files.
-- Real local paths, account names, passwords, API keys, or tokens.
-- Unredacted logs or manuscripts.
+- `.local_private/` 申请材料；
+- 原始 `.mph`、`.mphbin`、HDF5、NPZ、VTU、XDMF、PNG、GIF；
+- 真实 API key、token、password、secret；
+- 未脱敏路径和操作日志；
+- 未公开科研模型细节。
 
-Before pushing, run:
+## 推荐证明命令
 
 ```powershell
-research-orbit audit-redaction --input examples --output outputs/redaction_report.md
+research-orbit inspect
+research-orbit providers
+research-orbit list-workflows
 research-orbit validate
 pytest -q
 ```

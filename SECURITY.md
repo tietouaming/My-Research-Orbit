@@ -1,38 +1,33 @@
-# Security Policy
+# 安全策略
 
-## Supported Scope
+## 适用范围
 
-Security review currently covers the public Research Orbit source tree, CLI, workflow
-definitions, examples, documentation, and local-only redaction/application-pack behavior.
+当前安全策略覆盖 Research Orbit 的公开源码、CLI、workflow 定义、示例、文档、本地 redaction 审查和本地 application-pack 生成行为。
 
-## Reporting A Security Issue
+## 报告安全问题
 
-Do not open a public issue containing secrets, credentials, private paths, unpublished
-research material, or raw model files. Contact the repository owner through GitHub and
-provide only a minimal, desensitized description until a private channel is agreed.
+不要在公开 issue 中贴出 secret、凭据、私有路径、未公开科研材料或原始模型文件。请通过 GitHub 联系仓库所有者，并先提供最小化、已脱敏的描述。
 
-## Sensitive Material Rules
+## 敏感材料规则
 
-Do not commit:
+禁止提交：
 
-- `.env`, `.env.*`, `.key`, `.pem`, `.token`, or credential files;
-- API keys, tokens, passwords, secrets, account names, or private certificates;
-- raw `.mph`, `.mphbin`, HDF5, NPZ, VTU, XDMF, PNG, GIF, or large solver outputs;
-- unredacted local paths, private operation logs, or private application packs;
-- unpublished research models or proprietary documents.
+- `.env`、`.env.*`、`.key`、`.pem`、`.token` 或凭据文件；
+- API key、token、password、secret、账号或证书；
+- 原始 `.mph`、`.mphbin`、HDF5、NPZ、VTU、XDMF、PNG、GIF 或大型求解器输出；
+- 未脱敏本机路径、私有操作日志或私有申请包；
+- 未公开研究模型或专有文档。
 
-## Local-Only Behavior
+## 本地优先原则
 
-The default provider is `dry-run`, which does not call external APIs. Real providers must
-be explicitly configured through environment variables. Generated application packs are
-written to `.local_private/application_pack/` by default and are ignored by Git.
+默认 provider 是 `dry-run`，不会调用外部 API。真实 provider 必须通过环境变量显式配置。本地申请包默认写入 `.local_private/application_pack/`，并被 Git 忽略。
 
-## Redaction
+## 脱敏审查
 
-Run this command before publishing generated material:
+发布任何生成内容前运行：
 
 ```powershell
 research-orbit audit-redaction --input examples --output outputs/redaction_report.md
 ```
 
-The audit is local-only and does not upload files.
+该审查只在本地运行，不上传文件。

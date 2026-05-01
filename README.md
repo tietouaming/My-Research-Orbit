@@ -2,40 +2,25 @@
 
 ![Research Orbit CI](https://github.com/tietouaming/My-Research-Orbit/actions/workflows/ci.yml/badge.svg)
 
-This repository contains **Research Orbit**, an Agentic Research OS for turning daily
-scientific AI collaboration into reusable, auditable research workflows.
+本仓库包含 **Research Orbit**：一个面向科研人员的 Agentic Research OS，用于把日常 AI 协作中的论文编辑、公式处理、COMSOL 仿真模型审查、代码迁移、错误日志归因、运行经验总结、多机归档和长期记忆管理，沉淀为可复用、可审计、可扩展的 Agent 工作流系统。
 
-Research Orbit is designed for researchers who repeatedly use AI agents to edit papers,
-handle formulas, audit COMSOL-derived model summaries, review simulation migrations,
-diagnose logs, consolidate multi-machine memory, and prepare local-only project evidence.
-The project is provider-neutral: it supports a provider abstraction layer for OpenAI,
-Claude, Gemini, GLM, MiniMax, Kimi, MiMo, DeepSeek, and OpenAI-compatible endpoints.
+Research Orbit 是通用科研 Agent 工作流系统，不是单一模型厂商项目，也不是旧镁合金求解器项目。OpenAI、Claude、Gemini、GLM、MiniMax、Kimi、MiMo、DeepSeek 以及 OpenAI-compatible endpoint 都只是 provider 适配层的一部分。
 
-Public visibility does not grant permission to use, copy, modify, redistribute,
-commercialize, train models on, or derive work from this repository. See
-[LICENSE](LICENSE), [NOTICE.md](NOTICE.md), and [USAGE_NOTICE.md](USAGE_NOTICE.md).
+公开可见不等于授权使用。任何使用、复制、修改、商用、训练、二次分发或衍生工作，都必须获得作者本人明确授权。请先阅读 [LICENSE](LICENSE)、[NOTICE.md](NOTICE.md) 和 [USAGE_NOTICE.md](USAGE_NOTICE.md)。
 
-## What It Does
+## 主要能力
 
-- Generates reusable operation memory cards from Markdown, TXT, and log notes.
-- Runs structured Agent workflow specs from YAML.
-- Provides a deterministic `dry-run` provider for CI and no-key environments.
-- Defines provider adapters for OpenAI and OpenAI-compatible APIs, with clear placeholders
-  for Claude and Gemini live transports.
-- Documents configuration paths for GLM, MiniMax, Kimi, MiMo, and DeepSeek through
-  OpenAI-compatible endpoints when the user supplies a base URL, key, and model.
-- Audits local text for sensitive paths, secrets, account-like material, and large/private
-  research file extensions.
-- Generates local private application packs into `.local_private/application_pack/`.
-- Provides a local web workbench for inspecting workflows, providers, memory cards, and
-  redaction findings.
-- Ships tests, examples, docs, and GitHub Actions CI.
+- 从 Markdown、TXT、log 笔记生成可复用科研操作记忆卡片。
+- 读取并执行结构化 Agent workflow YAML。
+- 提供默认 `dry-run` provider，CI 和无密钥环境可完整运行。
+- 提供 OpenAI 与 OpenAI-compatible provider 抽象。
+- 为 Claude、Gemini、GLM、MiniMax、Kimi、MiMo、DeepSeek 保留清晰配置说明和能力边界。
+- 本地扫描敏感路径、API key/token/secret/password、邮箱、手机号和大型/私有科研文件扩展名。
+- 默认把本地私有申请材料生成到 `.local_private/application_pack/`。
+- 提供本地 Web 工作台，用于查看 workflows、providers、memory cards 和 redaction findings。
+- 包含 tests、examples、outputs、docs 和 GitHub Actions CI。
 
-Research Orbit is not a magnesium-alloy solver project. COMSOL, Word, MathType, FEniCSx,
-MOOSE, and PyTorch are example high-complexity research settings used to motivate reusable
-Agent workflows.
-
-## Installation
+## 安装
 
 ```powershell
 git clone https://github.com/tietouaming/My-Research-Orbit.git
@@ -43,9 +28,9 @@ cd My-Research-Orbit
 python -m pip install -e ".[dev]"
 ```
 
-Python 3.11 or newer is required.
+需要 Python 3.11 或更高版本。
 
-## CLI Quick Start
+## 快速开始
 
 ```powershell
 research-orbit inspect
@@ -60,62 +45,52 @@ research-orbit ui
 pytest -q
 ```
 
-The default provider is `dry-run`, so these commands do not require API keys and do not
-send data to external services.
+默认 provider 是 `dry-run`，因此这些命令不需要 API key，也不会向外部服务发送数据。
 
-For reproducible example output in documentation or CI fixtures, set:
+如需生成可复现示例输出，可设置：
 
 ```powershell
 $env:RESEARCH_ORBIT_FIXED_CREATED_AT="2026-05-01T00:00:00Z"
 ```
 
-## Local Web UI
+## 本地 Web UI
 
-Start the local Research Orbit workbench with:
+启动本地工作台：
 
 ```powershell
 research-orbit ui --host 127.0.0.1 --port 8765
 ```
 
-Then open:
+打开：
 
 ```text
 http://127.0.0.1:8765
 ```
 
-The UI is served from the Python package with the standard library HTTP server. It reads
-public project state from workflows, examples, provider configuration status, and local
-redaction scans. It does not upload data, does not display API key values, and does not
-read `.local_private/` application-pack contents.
+UI 由 Python 包内静态资源和标准库 HTTP server 提供，只读取公开项目状态：workflow、示例、provider 配置状态和本地 redaction 扫描结果。它不会上传数据，不会显示 API key，也不会读取 `.local_private/` 中的申请材料。
 
-## Workflows
+## Workflow
 
-Workflow YAML files live in `workflows/` and include:
+`workflows/` 下包含 6 个基础 workflow：
 
-- `research_memory_compactor`: compresses daily agent notes into reusable memory cards.
-- `word_mathtype_editor`: plans safe Word and MathType edits with backup, tracked
-  revisions, and formula object boundaries.
-- `comsol_model_auditor`: audits structured COMSOL model summaries without hand-copying
-  formulas from memory.
-- `simulation_porting_reviewer`: reviews COMSOL-to-FEniCSx, MOOSE, or Python migration
-  evidence with t=0 alignment as the first gate.
-- `run_log_diagnoser`: diagnoses solver, automation, and CI logs with evidence-ranked
-  next actions.
-- `application_pack_writer`: generates local-only application drafts under an ignored
-  private directory.
+- `research_memory_compactor`：把日常 Agent 操作日志压缩为可复用记忆卡片。
+- `word_mathtype_editor`：规划 Word 和 MathType 安全编辑，强调备份、修订和公式对象边界。
+- `comsol_model_auditor`：审查脱敏结构化 COMSOL 模型摘要，避免凭记忆手抄公式。
+- `simulation_porting_reviewer`：审查 COMSOL 到 FEniCSx/MOOSE/Python 的迁移证据，先做 t=0 对齐。
+- `run_log_diagnoser`：诊断 solver、automation 和 CI 日志，输出证据、原因、排查顺序和未知项。
+- `application_pack_writer`：在本地忽略目录生成申请材料草稿。
 
-Each workflow declares inputs, outputs, tools, steps, safety rules, success criteria,
-context usage pattern, provider requirements, and evidence materials.
+每个 workflow 都包含 inputs、outputs、tools、steps、safety_rules、success_criteria、context_usage_pattern、provider_requirements 和 evidence_materials。
 
-## Provider Configuration
+## Provider 配置
 
-Dry-run mode is always available:
+默认 dry-run：
 
 ```powershell
 $env:RESEARCH_ORBIT_PROVIDER="dry-run"
 ```
 
-OpenAI:
+OpenAI：
 
 ```powershell
 $env:RESEARCH_ORBIT_PROVIDER="openai"
@@ -123,7 +98,7 @@ $env:OPENAI_API_KEY="<your key>"
 $env:OPENAI_MODEL="<model>"
 ```
 
-Generic OpenAI-compatible endpoint:
+通用 OpenAI-compatible endpoint：
 
 ```powershell
 $env:RESEARCH_ORBIT_PROVIDER="openai-compatible"
@@ -132,7 +107,7 @@ $env:RESEARCH_ORBIT_API_KEY="<your key>"
 $env:RESEARCH_ORBIT_MODEL="<model>"
 ```
 
-Provider-specific configuration examples:
+Kimi、MiMo 等 provider 可通过 OpenAI-compatible 路径配置：
 
 ```powershell
 $env:RESEARCH_ORBIT_PROVIDER="kimi"
@@ -146,49 +121,45 @@ $env:MIMO_API_KEY="<your key>"
 $env:MIMO_MODEL="<model>"
 ```
 
-GLM, MiniMax, Kimi, MiMo, and DeepSeek are documented as configurable provider routes.
-No unverified endpoint is hardcoded. Claude and Gemini adapters expose explicit interfaces;
-their direct live transports should be implemented and tested before use.
+GLM、MiniMax、Kimi、MiMo、DeepSeek 均作为可配置 provider 路径记录，不硬编码未确认 endpoint。Claude 和 Gemini 目前保留接口和明确未实现提示，不伪造真实调用成功。
 
-## Security And Redaction
+## 安全与脱敏
 
-Run a local audit before publishing generated material:
+发布任何生成材料前运行：
 
 ```powershell
 research-orbit audit-redaction --input examples --output outputs/redaction_report.md
 ```
 
-The audit checks for local paths, secrets, passwords, token-like strings, email addresses,
-phone numbers, and private or large research file extensions such as `.mph`, `.mphbin`,
-HDF5, NPZ, VTU, XDMF, PNG, and GIF.
+禁止提交：
 
-Do not commit raw COMSOL models, solver binaries, generated private application packs,
-unredacted logs, API keys, account information, or real local paths.
+- 原始 COMSOL `.mph`、`.mphbin`；
+- HDF5、NPZ、VTU、XDMF、PNG、GIF 等大型结果文件；
+- API key、token、password、secret、证书；
+- 未脱敏本机路径、账号、日志；
+- `.local_private/` 下的申请材料。
 
-## Local Private Application Packs
+## 本地私有申请材料
 
-The command below generates local-only draft material:
+生成申请材料：
 
 ```powershell
 research-orbit generate-application-pack --target mimo-orbit
 ```
 
-By default, files are written to:
+默认输出：
 
 ```text
 .local_private/application_pack/
 ```
 
-That directory is ignored by Git. Generated application files are not public project
-material and should be manually reviewed before external use.
+该目录已被 `.gitignore` 忽略，不会提交到 GitHub。
 
-## Repository Notices
+## 仓库声明
 
-This repository intentionally uses an authorization-required license. It is visible for
-review, archival demonstration, and collaboration discussions, but it is not open source
-in the OSI sense unless the author separately grants explicit written permission.
+本仓库采用“需要作者授权”的许可方式。它公开用于展示、审阅和归档，但不是 OSI 意义上的开源项目。任何使用、修改、商用、训练、二次分发或衍生工作，都必须获得作者本人明确授权。
 
-Read these files before using the repository:
+请阅读：
 
 - [LICENSE](LICENSE)
 - [NOTICE.md](NOTICE.md)
@@ -198,7 +169,7 @@ Read these files before using the repository:
 - [DISCLAIMER.md](DISCLAIMER.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Development
+## 开发
 
 ```powershell
 python -m pip install -e ".[dev]"
@@ -208,23 +179,20 @@ research-orbit validate
 research-orbit ui
 ```
 
-CI uses dry-run only and does not require real provider credentials.
+CI 只使用 `dry-run`，不依赖真实 provider 凭据。
 
-## Current Limits
+## 当前限制
 
-- Memory-card extraction is deterministic and rule-based; it is intentionally conservative.
-- OpenAI-compatible providers require user-supplied base URLs, keys, and model names.
-- Claude and Gemini direct live transports are placeholders until implemented against
-  current official APIs.
-- The project does not parse raw `.mph` files directly; it expects desensitized structured
-  summaries for public workflows.
-- The web UI is a local inspection workbench; workflow execution history and editing
-  controls are planned for later versions.
+- memory card 提取目前是确定性规则型，后续可加入更强语义抽取。
+- OpenAI-compatible provider 需要用户提供 base URL、key 和 model。
+- Claude/Gemini direct transport 尚未实现真实请求。
+- 公开项目不直接解析原始 `.mph`，只处理脱敏结构化摘要。
+- Web UI 当前是本地查看工作台，后续会加入 workflow 运行和历史记录。
 
-## Roadmap
+## 路线图
 
-- Add richer memory-card extraction and evaluation fixtures.
-- Add tested direct transports for Claude and Gemini.
-- Add UI controls for launching dry-run workflows and comparing generated reports.
-- Add structured importers for desensitized COMSOL model summaries.
-- Expand Word/MathType safety checklists and dry-run verification reports.
+- 增强 memory card 抽取、去重和合并。
+- 增加 Claude/Gemini direct transport。
+- 增加 UI 中的 dry-run workflow 执行按钮。
+- 增加脱敏 COMSOL structured summary importer。
+- 扩展 Word/MathType 安全检查与报告。

@@ -1,27 +1,30 @@
-# Evaluation Plan
+# 评估计划
 
-Research Orbit is evaluated as an engineering workflow system, not as a scientific solver.
+Research Orbit 评估的是科研工作流系统质量，而不是某个科学求解器的数值精度。
 
-## Functional Checks
+## 当前可验证项
 
-- `research-orbit inspect` reports project paths and workflow count.
-- `research-orbit providers` masks provider configuration status.
-- `research-orbit list-workflows` validates all YAML workflow files.
-- `research-orbit build-memory-cards` writes JSONL and Markdown memory cards.
-- `research-orbit run-workflow` writes deterministic dry-run reports.
-- `research-orbit audit-redaction` writes local redaction reports.
-- `research-orbit generate-application-pack` writes private drafts under ignored paths.
-- `research-orbit validate` catches missing files, invalid workflows, and ignore-rule gaps.
+- CLI 命令是否可运行；
+- workflow YAML 是否字段完整；
+- memory card 是否包含必要结构；
+- provider registry 是否不泄露 key；
+- redaction 是否能发现敏感模式；
+- `.local_private/` 是否被忽略；
+- CI 是否能在 Python 3.11 下通过；
+- Web UI 是否能读取真实项目状态。
 
-## Quality Checks
+## 自动测试
 
-- Memory cards preserve source paths and reusable rules.
-- Workflow reports separate safety rules, evidence, and provider output.
-- Provider registry never prints raw API keys.
-- Application-pack generation defaults to `.local_private/application_pack/`.
-- Public docs do not present a single provider as the project identity.
+```powershell
+pytest -q
+ruff check .
+research-orbit validate
+```
 
-## Regression Tests
+## 后续评估
 
-Pytest covers redaction, memory cards, workflow loading, provider registry behavior,
-application pack generation, and CLI smoke commands. CI runs only dry-run mode.
+- 为每个 workflow 增加 expected report fixture；
+- 增加 memory card 抽取准确率检查；
+- 增加 redaction false positive/false negative 样例；
+- 增加 provider-compatible 请求构造测试；
+- 增加 UI 状态快照测试。

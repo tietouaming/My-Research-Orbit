@@ -1,13 +1,11 @@
-# Changelog
+# 变更记录
 
 ## 0.1.0
 
-- Added Research Orbit Python package and CLI.
-- Added dry-run, OpenAI, and OpenAI-compatible provider infrastructure.
-- Added documented provider routes for Claude, Gemini, GLM, MiniMax, Kimi, MiMo, and
-  DeepSeek.
-- Added workflow YAML specs for memory compaction, Word/MathType editing, COMSOL model
-  audit, simulation porting review, run-log diagnosis, and local application-pack writing.
-- Added memory card generation, redaction audit, validation, local private application-pack
-  generation, tests, examples, documentation, and CI.
-- Added local web workbench for project inspection.
+- 新增 Research Orbit Python package 和 CLI。
+- 新增 dry-run、OpenAI、OpenAI-compatible provider 基础设施。
+- 新增 Claude、Gemini、GLM、MiniMax、Kimi、MiMo、DeepSeek provider 配置说明。
+- 新增 memory compaction、Word/MathType editing、COMSOL model audit、simulation porting review、run-log diagnosis、local application-pack writing 六个 workflow。
+- 新增 memory card 生成、redaction audit、validate、本地私有 application-pack 生成、测试、示例、文档和 CI。
+- 新增本地 Web workbench。
+- 将独立 GitHub 仓库的公开说明和声明文件切换为中文。

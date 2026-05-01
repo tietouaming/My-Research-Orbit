@@ -1,47 +1,36 @@
-# Local Application Pack Guide
+# 本地申请包指南
 
-Research Orbit can generate local private application drafts. These drafts are not public
-repository material.
+Research Orbit 可以生成本地私有申请材料。生成结果不是公开项目内容，不应提交 GitHub。
 
-Default output:
+## 默认目录
 
 ```text
 .local_private/application_pack/
 ```
 
-The directory is ignored by Git.
+该目录已在 `.gitignore` 中忽略。
 
-## Generate A Pack
+## 生成命令
 
 ```powershell
 research-orbit generate-application-pack --target mimo-orbit
 ```
 
-Other supported targets:
+也支持：
 
-```powershell
-research-orbit generate-application-pack --target general-creator-program
-research-orbit generate-application-pack --target research-tool-grant
-```
+- `general-creator-program`
+- `research-tool-grant`
 
-Generated files:
-
-- `01_project_summary.md`
-- `02_technical_architecture.md`
-- `03_context_and_token_usage_plan.md`
-- `04_github_proof_materials.md`
-- `05_roadmap.md`
-- `06_application_form_draft.md`
-
-## Safety Checks
-
-After generation:
+## 本地检查
 
 ```powershell
 git check-ignore .local_private/application_pack/01_project_summary.md
-research-orbit audit-redaction --input .local_private/application_pack --output outputs/private/application_pack_redaction.md
+research-orbit audit-redaction --input .local_private/application_pack --output .local_private/application_pack_redaction_report.md
 ```
 
-Manually review every generated file before using it outside the local machine. Confirm
-that it contains no secrets, private paths, unpublished raw data, or unsupported provider
-claims.
+## 规则
+
+- 申请材料只在本地生成；
+- 不自动提交；
+- 不进入 GitHub；
+- 提交外部申请前应确认没有 secret、私有路径和未公开科研材料。

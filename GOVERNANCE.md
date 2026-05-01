@@ -1,14 +1,13 @@
-# Governance
+# 治理
 
-Research Orbit is currently maintained by the repository owner.
+Research Orbit 当前由仓库所有者维护。
 
-The maintainer controls:
+维护者负责决定：
 
-- accepted provider integrations;
-- public documentation boundaries;
-- security and redaction rules;
-- release timing;
-- authorization decisions for use, modification, redistribution, commercial use, model
-  training, or derivative works.
+- 接受哪些 provider 集成；
+- 公开文档边界；
+- 安全与 redaction 规则；
+- release 节奏；
+- 使用、修改、再分发、商用、模型训练或衍生作品授权。
 
-Public visibility of the repository does not change ownership or authorization terms.
+仓库公开可见不改变项目所有权和授权条款。

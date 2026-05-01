@@ -1,25 +1,22 @@
-# Privacy
+# 隐私说明
 
-Research Orbit is designed around local-first handling of sensitive research context.
+Research Orbit 采用本地优先的隐私边界设计。
 
-## Public Repository Contents
+## 公开仓库内容
 
-The public repository should contain only source code, workflow definitions, tests,
-documentation, small desensitized examples, and public example outputs.
+公开仓库只应包含源代码、workflow 定义、测试、文档、小型脱敏示例和公开示例输出。
 
-## Private Local Contents
+## 本地私有内容
 
-The following must remain local:
+以下内容必须只保留在本地：
 
-- generated application packs;
-- private operation logs;
-- real API keys or provider credentials;
-- raw COMSOL models and simulation outputs;
-- local absolute paths and account-specific metadata;
-- unpublished documents or research details that have not been desensitized.
+- 生成的申请材料；
+- 私有操作日志；
+- 真实 API key 或 provider 凭据；
+- 原始 COMSOL 模型和仿真输出；
+- 本机绝对路径、账号相关元数据；
+- 未公开文档或未脱敏研究细节。
 
-## External Providers
+## 外部 provider
 
-The default `dry-run` provider does not send data to external services. Real model calls
-are only possible after a user explicitly configures a provider through environment
-variables and runs a command with user-supplied input.
+默认 `dry-run` provider 不会向外部服务发送数据。只有用户显式配置 provider 环境变量，并主动运行相关命令时，才可能发生真实模型请求。

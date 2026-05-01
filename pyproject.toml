@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "research-orbit"
 version = "0.1.0"
-description = "Agentic Research OS for reusable scientific AI workflows."
+description = "面向科研人员的 Agentic Research OS，用于沉淀可复用科研 AI 工作流。"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }

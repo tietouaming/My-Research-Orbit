@@ -1,53 +1,25 @@
-# Context And Token Usage Scenarios
+# 长上下文使用场景
 
-Research Orbit is designed for long-context and multi-round research work.
+Research Orbit 面向长上下文和多轮科研 Agent 协作，不是单轮问答工具。
 
-## Long Document Reading
+## 典型场景
 
-Agents often need to read many small Markdown notes, runbooks, solver reports, and review
-logs before producing a reusable conclusion. Memory compaction reduces that context into
-structured cards with source paths and verification status.
+1. 长文档读取：读取多份 Codex 运行总结、论文修改记录、仿真审查日志和 PR 说明。
+2. 多轮论文修订：在保留修订、批注和公式对象边界的前提下规划 Word/MathType 操作。
+3. COMSOL 模型审查：读取脱敏 structured summary，检查参数、变量、弱式、边界和求解器设置。
+4. 弱式方程检查：比较符号、单位、域映射和边界条件是否一致。
+5. 迁移验证：先 t=0 整场对齐，再短时烟测，再长时分析。
+6. 错误日志归因：从长日志中提取证据、可能原因、排查顺序和未知项。
+7. 多机记忆合并：把多台电脑的 Agent 操作经验追加归档，避免覆盖。
+8. 本地申请材料生成：把公开项目材料和本地证明材料组织为私有申请包。
+9. 代码审查：审查 workflow、provider、redaction 和测试变更。
+10. 测试失败修复：读取 CI 日志，给出可复现修复路径。
 
-## Multi-Round Manuscript Revision
+## Token 使用模式
 
-Scientific writing may span many edit rounds. The Word/MathType workflow keeps backup,
-tracked revisions, formula object boundaries, captions, cross references, and comments in
-view across turns.
+- 小上下文：单条日志、单张 memory card；
+- 中上下文：多个示例与单个 workflow；
+- 长上下文：多份历史总结与多机归档；
+- 超长上下文：长期科研项目记忆库与申请材料整合。
 
-## Word And MathType Safe Editing
-
-Formula objects are not normal text. Long context is used to remember document state,
-selection risks, backup paths, revision mode, and post-edit verification requirements.
-
-## COMSOL Model Review
-
-COMSOL-derived summaries can include parameters, variables, weak forms, geometry, mesh,
-boundary conditions, studies, solvers, probes, and result groups. The workflow keeps these
-sections together and avoids hand-copying formulas from memory.
-
-## Weak Form And Boundary Checks
-
-Long context helps compare original expressions, interpreted equations, domains,
-boundaries, and solver settings. The output should state what is verified and what remains
-uncertain.
-
-## Run Log Diagnosis
-
-Solver and CI logs can be long and repetitive. The diagnoser extracts the first error,
-repeated symptoms, evidence, likely causes, ordered checks, and non-conclusions.
-
-## Multi-Machine Memory Merge
-
-When several machines work on the same research project, each machine should write
-additive notes. Later consolidation should merge by review instead of overwriting files.
-
-## Local Application Material Generation
-
-Application drafts may need project summaries, architecture, context usage, proof
-materials, roadmaps, and form drafts. Research Orbit generates these locally and keeps the
-results out of Git.
-
-## Code Review And Test Failure Repair
-
-The same workflow pattern can review code changes, summarize failing tests, rank fixes,
-and capture reusable rules for future agent runs.
+默认 dry-run 不消耗外部 token。

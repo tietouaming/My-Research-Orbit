@@ -1,10 +1,7 @@
-# Code Of Conduct
+# 行为准则
 
-Participants are expected to communicate professionally and keep discussion focused on
-technical work, safety boundaries, documentation quality, and reproducible behavior.
+参与者应保持专业、克制、围绕技术问题沟通，重点关注可复现性、安全边界、文档质量和工程可靠性。
 
-Unacceptable behavior includes harassment, personal attacks, publishing private material,
-posting secrets, or attempting to pressure maintainers into accepting unsafe changes.
+不可接受行为包括骚扰、人身攻击、发布他人隐私、泄露 secret、提交未脱敏材料，或推动维护者接受不安全改动。
 
-The maintainer may close issues or pull requests that violate these expectations or the
-authorization-required usage policy.
+维护者可以关闭违反本准则或授权使用条款的 issue 和 pull request。

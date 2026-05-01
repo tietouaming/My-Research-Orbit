@@ -1,25 +1,15 @@
-Research Orbit Authorization-Required License
+Research Orbit 授权使用许可
 
 Copyright (c) 2026 tietouaming.
 
-All rights reserved unless the author grants explicit written permission.
+除非作者本人另行给予明确书面授权，否则保留所有权利。
 
-This repository is made visible for review, archival demonstration, and collaboration
-discussion. Public visibility does not grant any license to use, copy, modify, merge,
-publish, distribute, sublicense, sell, commercialize, train models on, include in datasets,
-or create derivative works from the repository or any substantial part of it.
+本仓库公开可见，仅用于展示、审阅、归档和协作讨论。公开可见不授予任何使用、复制、修改、合并、发布、分发、再许可、销售、商业化、模型训练、数据集收录或衍生作品制作的权利。
 
-You may view the repository contents through GitHub for evaluation and discussion. Any
-other use requires prior written authorization from the author.
+你可以通过 GitHub 查看仓库内容以进行评估和讨论。除此之外的任何使用，都需要事先获得作者本人明确授权。
 
-The repository intentionally contains only desensitized examples, workflow definitions,
-source code, tests, and documentation. Private application materials, real credentials,
-raw COMSOL models, raw simulation outputs, unredacted logs, and private local paths must
-not be committed to this repository.
+本仓库只应包含脱敏示例、workflow 定义、源代码、测试和文档。私有申请材料、真实凭据、原始 COMSOL 模型、原始仿真输出、未脱敏日志和本机私有路径不得提交到本仓库。
 
-No warranty is provided. The repository is provided "as is", without warranty of any kind,
-express or implied, including but not limited to warranties of merchantability, fitness for
-a particular purpose, and noninfringement. In no event shall the author be liable for any
-claim, damages, or other liability arising from viewing, evaluating, or using the material.
+本仓库按“原样”提供，不提供任何明示或默示担保，包括但不限于适销性、特定用途适用性和不侵权担保。作者不对因查看、评估或使用本材料而产生的任何索赔、损害或其他责任承担责任。
 
-For authorization requests, contact the repository owner through GitHub.
+授权请求请通过 GitHub 联系仓库所有者。

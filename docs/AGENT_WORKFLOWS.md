@@ -1,6 +1,8 @@
 # Agent Workflows
 
-Research Orbit workflows are YAML documents with a stable structure:
+Research Orbit 的 workflow 是结构化 YAML 文件，用来把科研 Agent 任务转化为可审计流程。
+
+每个 workflow 至少包含：
 
 - `name`
 - `version`
@@ -16,27 +18,20 @@ Research Orbit workflows are YAML documents with a stable structure:
 - `provider_requirements`
 - `evidence_materials`
 
-The schema is validated by `research-orbit list-workflows` and `research-orbit validate`.
+## 已有 Workflow
 
-## Included Workflows
+- `research_memory_compactor`：把日常 Agent 操作日志压缩成 memory cards。
+- `word_mathtype_editor`：规划 Word/MathType 安全编辑，强调备份、修订和公式对象边界。
+- `comsol_model_auditor`：审查脱敏 COMSOL structured summary，不凭记忆手抄模型。
+- `simulation_porting_reviewer`：审查迁移证据，先 t=0 整场对齐，再短时烟测，再长时分析。
+- `run_log_diagnoser`：对 solver、CI、Python 日志做证据优先归因。
+- `application_pack_writer`：在本地私有目录生成申请材料。
 
-`research_memory_compactor` converts daily agent operation logs into reusable memory cards.
-It is useful after long work sessions where decisions are scattered across commands,
-notes, and reports.
+## 运行方式
 
-`word_mathtype_editor` plans safe manuscript changes. It requires backup, tracked
-revisions, and formula object safety. MathType equations are not treated as normal text.
+```powershell
+research-orbit list-workflows
+research-orbit run-workflow --workflow research_memory_compactor --input examples/sample_operation_log.md --output outputs/research_memory_report.md
+```
 
-`comsol_model_auditor` audits structured summaries extracted from COMSOL models. The
-workflow prioritizes intermediate structured data and original expressions over manual
-transcription.
-
-`simulation_porting_reviewer` reviews migration evidence from COMSOL toward FEniCSx,
-MOOSE, or Python solvers. The first gate is t=0 whole-field alignment, followed by short
-smoke tests and only then long-run interpretation.
-
-`run_log_diagnoser` reads solver, automation, or CI logs and outputs possible causes,
-evidence, priority-ordered checks, and limits.
-
-`application_pack_writer` generates local-only application drafts. It writes to ignored
-private directories by default and keeps target-specific material out of public Git.
+默认 provider 是 `dry-run`，不会调用外部 API。

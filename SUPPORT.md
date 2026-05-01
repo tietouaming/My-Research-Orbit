@@ -1,13 +1,13 @@
-# Support
+# 支持
 
-For questions, use GitHub issues only with desensitized information.
+请通过 GitHub issues 提问，但只能提交脱敏信息。
 
-Do not post:
+不要发布：
 
-- API keys, tokens, passwords, or secrets;
-- private local paths;
-- raw `.mph`, `.mphbin`, HDF5, NPZ, VTU, XDMF, PNG, GIF, or large result files;
-- unpublished research material;
-- private application pack contents.
+- API key、token、password 或 secret；
+- 私有本机路径；
+- 原始 `.mph`、`.mphbin`、HDF5、NPZ、VTU、XDMF、PNG、GIF 或大型结果文件；
+- 未公开科研材料；
+- 私有申请包内容。
 
-For authorization requests, contact the repository owner through GitHub.
+授权请求请通过 GitHub 联系仓库所有者。
