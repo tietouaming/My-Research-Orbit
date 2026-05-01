@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "My Research Orbit"
+message: "If you reference this repository, cite it as Research Orbit and respect the authorization-required terms."
+type: software
+authors:
+  - name: "tietouaming"
+repository-code: "https://github.com/tietouaming/My-Research-Orbit"
+date-released: "2026-05-01"
+license: "LicenseRef-Authorization-Required"
+abstract: "Research Orbit is an Agentic Research OS for reusable scientific AI workflows."

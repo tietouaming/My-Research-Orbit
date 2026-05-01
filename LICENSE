@@ -1,0 +1,25 @@
+Research Orbit Authorization-Required License
+
+Copyright (c) 2026 tietouaming.
+
+All rights reserved unless the author grants explicit written permission.
+
+This repository is made visible for review, archival demonstration, and collaboration
+discussion. Public visibility does not grant any license to use, copy, modify, merge,
+publish, distribute, sublicense, sell, commercialize, train models on, include in datasets,
+or create derivative works from the repository or any substantial part of it.
+
+You may view the repository contents through GitHub for evaluation and discussion. Any
+other use requires prior written authorization from the author.
+
+The repository intentionally contains only desensitized examples, workflow definitions,
+source code, tests, and documentation. Private application materials, real credentials,
+raw COMSOL models, raw simulation outputs, unredacted logs, and private local paths must
+not be committed to this repository.
+
+No warranty is provided. The repository is provided "as is", without warranty of any kind,
+express or implied, including but not limited to warranties of merchantability, fitness for
+a particular purpose, and noninfringement. In no event shall the author be liable for any
+claim, damages, or other liability arising from viewing, evaluating, or using the material.
+
+For authorization requests, contact the repository owner through GitHub.

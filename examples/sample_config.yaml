@@ -1,0 +1,14 @@
+provider: dry-run
+outputs:
+  public_dir: outputs/
+  private_dir: .local_private/
+workflows:
+  - research_memory_compactor
+  - word_mathtype_editor
+  - comsol_model_auditor
+  - simulation_porting_reviewer
+  - run_log_diagnoser
+  - application_pack_writer
+safety:
+  allow_external_provider: false
+  require_redaction_audit_before_publication: true

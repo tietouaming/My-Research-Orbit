@@ -1,0 +1,50 @@
+name: research_memory_compactor
+version: "0.1"
+description: Compress daily agent operation notes into reusable scientific memory cards.
+intended_user: Researcher or research engineer maintaining long-running AI collaboration memory.
+inputs:
+  - Desensitized Markdown or TXT operation notes
+  - Runbooks and review logs
+outputs:
+  - Memory cards with source links, risk levels, reusable rules, and verification status
+tools:
+  - local file reader
+  - memory card generator
+  - redaction audit
+steps:
+  - id: collect
+    title: Collect source notes
+    instruction: Read only user-provided or repository-local text notes and preserve source paths.
+    expected_evidence:
+      - source file list
+  - id: classify
+    title: Classify operations
+    instruction: Classify each note into research workflow categories before summarizing.
+    expected_evidence:
+      - category per card
+  - id: extract_rule
+    title: Extract reusable rule
+    instruction: Convert the observed operation into a concise reusable rule with risk and verification status.
+    expected_evidence:
+      - reusable_rule
+      - risk_level
+  - id: audit
+    title: Check safety
+    instruction: Flag sensitive paths, credentials, raw model files, and unredacted records before publication.
+    expected_evidence:
+      - redaction findings
+safety_rules:
+  - Do not include unredacted local paths, account names, credentials, or raw private logs.
+  - Do not overwrite another machine's notes during consolidation.
+  - Keep raw scientific models and large binary artifacts outside Git.
+success_criteria:
+  - Every card has title, source path, category, problem, solution, reusable rule, risk, verification, and tags.
+  - The output can be regenerated deterministically in dry-run mode.
+context_usage_pattern: Long-context reading across many small operation notes, followed by compression into reusable cards.
+provider_requirements:
+  - dry-run is sufficient for deterministic CI output
+  - real providers must be explicitly configured by environment variables
+evidence_materials:
+  - source note paths
+  - generated memory card files
+  - redaction audit report

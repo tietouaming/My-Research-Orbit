@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research Orbit</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Research Orbit navigation">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">RO</div>
+          <div>
+            <h1>Research Orbit</h1>
+            <p>Agentic Research OS</p>
+          </div>
+        </div>
+
+        <nav class="nav-stack" aria-label="Workspace sections">
+          <a href="#overview" class="nav-item active">Overview</a>
+          <a href="#workflows" class="nav-item">Workflows</a>
+          <a href="#memory" class="nav-item">Memory Cards</a>
+          <a href="#providers" class="nav-item">Providers</a>
+          <a href="#safety" class="nav-item">Safety</a>
+        </nav>
+
+        <div class="side-note">
+          <span class="status-dot"></span>
+          <span>Local dry-run first. Private packs stay ignored.</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section id="overview" class="topbar" aria-labelledby="overview-title">
+          <div>
+            <p class="eyebrow">Local research workbench</p>
+            <h2 id="overview-title">Reusable workflows for scientific agent operations</h2>
+          </div>
+          <div class="command-strip" aria-label="Useful commands">
+            <code>research-orbit inspect</code>
+            <code>research-orbit validate</code>
+          </div>
+        </section>
+
+        <section class="metrics-grid" aria-label="Project metrics">
+          <article class="metric">
+            <span class="metric-label">Workflows</span>
+            <strong id="metric-workflows">-</strong>
+          </article>
+          <article class="metric">
+            <span class="metric-label">Providers</span>
+            <strong id="metric-providers">-</strong>
+          </article>
+          <article class="metric">
+            <span class="metric-label">Memory Cards</span>
+            <strong id="metric-cards">-</strong>
+          </article>
+          <article class="metric">
+            <span class="metric-label">Redaction Findings</span>
+            <strong id="metric-redaction">-</strong>
+          </article>
+        </section>
+
+        <section class="split-layout">
+          <article class="panel context-panel">
+            <header class="panel-header">
+              <div>
+                <p class="eyebrow">Context orbit</p>
+                <h3>Project Snapshot</h3>
+              </div>
+            </header>
+            <dl class="path-list" id="path-list"></dl>
+          </article>
+
+          <article class="panel">
+            <header class="panel-header">
+              <div>
+                <p class="eyebrow">Run posture</p>
+                <h3>Safety Defaults</h3>
+              </div>
+            </header>
+            <ul class="check-list">
+              <li>dry-run provider works without credentials</li>
+              <li>application packs default to ignored local output</li>
+              <li>raw solver files and unredacted logs stay outside Git</li>
+              <li>public visibility does not grant usage rights</li>
+            </ul>
+          </article>
+        </section>
+
+        <section id="workflows" class="panel">
+          <header class="panel-header">
+            <div>
+              <p class="eyebrow">Agent workflow library</p>
+              <h3>Workflow Specs</h3>
+            </div>
+            <code>workflows/*.yaml</code>
+          </header>
+          <div class="workflow-list" id="workflow-list"></div>
+        </section>
+
+        <section id="memory" class="panel">
+          <header class="panel-header">
+            <div>
+              <p class="eyebrow">Reusable operation knowledge</p>
+              <h3>Memory Cards</h3>
+            </div>
+            <code>examples/</code>
+          </header>
+          <div class="card-grid" id="memory-card-list"></div>
+        </section>
+
+        <section id="providers" class="panel">
+          <header class="panel-header">
+            <div>
+              <p class="eyebrow">Model routing</p>
+              <h3>Provider Adapters</h3>
+            </div>
+            <code>masked env only</code>
+          </header>
+          <div class="provider-table-wrap">
+            <table class="provider-table">
+              <thead>
+                <tr>
+                  <th>Provider</th>
+                  <th>Status</th>
+                  <th>Required env</th>
+                  <th>Capability</th>
+                </tr>
+              </thead>
+              <tbody id="provider-table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="safety" class="panel">
+          <header class="panel-header">
+            <div>
+              <p class="eyebrow">Local audit</p>
+              <h3>Redaction Findings</h3>
+            </div>
+            <code>research-orbit audit-redaction</code>
+          </header>
+          <div class="finding-list" id="finding-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

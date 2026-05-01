@@ -1,0 +1,56 @@
+name: run_log_diagnoser
+version: "0.1"
+description: Diagnose solver, automation, and CI logs with evidence-ranked next actions.
+intended_user: Researcher or developer debugging scientific automation runs.
+inputs:
+  - Error log
+  - Solver log
+  - CI log
+  - Command invocation notes
+outputs:
+  - Likely causes
+  - Evidence table
+  - Priority-ordered checks
+  - Unknowns and limits
+tools:
+  - local log reader
+  - pattern matcher
+  - workflow checklist
+steps:
+  - id: segment
+    title: Segment log
+    instruction: Identify command, environment, first error, repeated errors, and final status.
+    expected_evidence:
+      - first error line
+      - exit status
+  - id: causes
+    title: List possible causes
+    instruction: Propose possible causes only when tied to log evidence.
+    expected_evidence:
+      - cause evidence pairs
+  - id: prioritize
+    title: Prioritize checks
+    instruction: Rank next checks by reversibility, likelihood, and information value.
+    expected_evidence:
+      - ordered checklist
+  - id: limits
+    title: State limits
+    instruction: Name what cannot be concluded from the log.
+    expected_evidence:
+      - unknowns section
+safety_rules:
+  - Do not invent success when the log is incomplete.
+  - Do not print or propagate secrets found in logs.
+  - Prefer minimal reversible checks before expensive reruns.
+success_criteria:
+  - Output includes possible causes, evidence, priority order, and non-conclusions.
+  - Sensitive patterns are identified for local review.
+context_usage_pattern: Long log reading with local evidence extraction and multi-step causal reasoning.
+provider_requirements:
+  - dry-run can render deterministic diagnosis scaffolds
+  - real providers must not receive unredacted logs unless explicitly approved
+evidence_materials:
+  - first failing line
+  - traceback or solver residual section
+  - command line summary
+  - environment summary

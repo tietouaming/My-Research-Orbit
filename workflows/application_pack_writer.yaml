@@ -1,0 +1,54 @@
+name: application_pack_writer
+version: "0.1"
+description: Generate local-only application pack drafts from public project material and desensitized evidence.
+intended_user: Project author preparing creator program, research tool grant, or similar application drafts.
+inputs:
+  - Public README and docs
+  - Desensitized proof material
+  - Memory cards
+  - Target name
+outputs:
+  - Local private application pack
+  - Manual review checklist
+tools:
+  - application pack generator
+  - redaction audit
+  - local file writer
+steps:
+  - id: target
+    title: Select target
+    instruction: Select target such as mimo-orbit, general-creator-program, or research-tool-grant.
+    expected_evidence:
+      - target name
+  - id: draft
+    title: Draft local files
+    instruction: Write draft files only into the ignored local private output directory by default.
+    expected_evidence:
+      - .local_private/application_pack file list
+  - id: review
+    title: Review sensitive content
+    instruction: Run redaction audit and manually review all generated drafts before external submission.
+    expected_evidence:
+      - redaction report
+  - id: publish_boundary
+    title: Preserve publish boundary
+    instruction: Do not commit generated application files, raw logs, paths, secrets, or private evidence.
+    expected_evidence:
+      - gitignore check
+safety_rules:
+  - Default output directory is .local_private/application_pack/.
+  - Generated application packs are local private drafts and must not be committed.
+  - Public docs must keep Research Orbit provider-neutral.
+  - MiMo can appear as one target/provider, not as the public project identity.
+success_criteria:
+  - Draft files are generated under an ignored local private path.
+  - The user receives a manual review checklist.
+  - Git status does not include application pack contents.
+context_usage_pattern: Long-context project summarization and local-only target-specific drafting.
+provider_requirements:
+  - dry-run can generate stable local templates
+  - real providers must not receive private application content unless explicitly enabled
+evidence_materials:
+  - generated file list
+  - .gitignore rule
+  - redaction audit report

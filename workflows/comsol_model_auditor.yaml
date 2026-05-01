@@ -1,0 +1,61 @@
+name: comsol_model_auditor
+version: "0.1"
+description: Audit structured COMSOL model summaries extracted from .mph files without hand-copying formulas from memory.
+intended_user: Research engineer reviewing multiphysics COMSOL models and exported intermediate specifications.
+inputs:
+  - Structured model summary
+  - Parameter and variable tables
+  - Weak form and boundary condition extracts
+  - Solver and result group settings
+outputs:
+  - Audit report
+  - Risk list
+  - Required evidence gaps
+tools:
+  - structured model spec reader
+  - expression checklist
+  - solver setting reviewer
+steps:
+  - id: inventory
+    title: Inventory extracted sections
+    instruction: Confirm parameters, variables, weak forms, geometry, mesh, physics, studies, solvers, probes, and results are represented.
+    expected_evidence:
+      - model section list
+  - id: preserve
+    title: Preserve original expressions
+    instruction: Keep original COMSOL expressions alongside any interpreted form.
+    expected_evidence:
+      - original expression table
+  - id: boundary_review
+    title: Review boundaries and domains
+    instruction: Check domain and boundary classifications before judging physics.
+    expected_evidence:
+      - domain mapping
+      - boundary mapping
+  - id: solver_review
+    title: Review solver settings
+    instruction: Capture study, time stepping, nonlinear solver, and linear solver settings as evidence.
+    expected_evidence:
+      - solver settings
+  - id: conclusion_limits
+    title: State limits
+    instruction: Separate verified extraction facts from interpretations and unknowns.
+    expected_evidence:
+      - unknowns section
+safety_rules:
+  - Do not upload raw .mph, .mphbin, HDF5, NPZ, VTU, XDMF, PNG, or GIF artifacts.
+  - Prefer structured intermediate files over manual transcription.
+  - Do not claim t>0 numerical truth until field ordering and physics validation are trusted.
+success_criteria:
+  - The report identifies checked sections, missing evidence, and unsafe assumptions.
+  - Original expressions are preserved.
+  - Boundary/domain uncertainty is explicit.
+context_usage_pattern: Long structured model summaries plus multi-step reasoning over equations, mesh, boundaries, and solver settings.
+provider_requirements:
+  - dry-run can render the audit skeleton
+  - real providers must receive only desensitized structured summaries
+evidence_materials:
+  - model specification summary
+  - weak form extracts
+  - boundary and domain maps
+  - solver settings

@@ -1,0 +1,60 @@
+name: simulation_porting_reviewer
+version: "0.1"
+description: Review COMSOL-to-FEniCSx, MOOSE, or Python migration evidence before trusting long transient results.
+intended_user: Research engineer porting simulation models across numerical platforms.
+inputs:
+  - Porting notes
+  - Initial field comparisons
+  - Short run logs
+  - Solver configuration summary
+outputs:
+  - Migration review report
+  - Validation gate status
+  - Next checks
+tools:
+  - field comparison reader
+  - solver log reader
+  - migration checklist
+steps:
+  - id: spec_trace
+    title: Trace source specification
+    instruction: Confirm the migrated model came from structured COMSOL extraction, not memory transcription.
+    expected_evidence:
+      - model spec reference
+  - id: t0_alignment
+    title: Check t=0 alignment
+    instruction: Compare whole-field initial conditions before any transient claims.
+    expected_evidence:
+      - t=0 error summary
+  - id: smoke_test
+    title: Review short smoke test
+    instruction: Run or review a short transient smoke test before long runs.
+    expected_evidence:
+      - short run log
+  - id: long_run
+    title: Gate long-run interpretation
+    instruction: Interpret long-time morphology only after earlier gates pass.
+    expected_evidence:
+      - gate decision
+  - id: unknowns
+    title: Record unknowns
+    instruction: List DOF order, boundary condition, solver stiffness, or unit uncertainties that remain.
+    expected_evidence:
+      - unknowns list
+safety_rules:
+  - Validate t=0 whole-field agreement first.
+  - Run short smoke tests before long transient analysis.
+  - Do not reuse known COMSOL transcription bugs.
+  - Keep raw result binaries out of public Git.
+success_criteria:
+  - The review clearly says which migration gates passed, failed, or remain unknown.
+  - Evidence is separated from inference.
+context_usage_pattern: Multi-file comparison of specs, solver logs, field metrics, and review notes.
+provider_requirements:
+  - dry-run can create the review structure
+  - real providers should receive small summaries, not raw binary result files
+evidence_materials:
+  - t=0 comparison
+  - smoke test log
+  - solver configuration
+  - known uncertainty list

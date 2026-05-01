@@ -1,0 +1,62 @@
+name: word_mathtype_editor
+version: "0.1"
+description: Plan safe Word manuscript and MathType equation edits without silently corrupting document objects.
+intended_user: Researcher editing scientific manuscripts with formulas, captions, references, and tracked revisions.
+inputs:
+  - Manuscript edit request
+  - Document structure notes
+  - Formula object inventory when available
+outputs:
+  - Safe edit plan
+  - Backup and verification checklist
+  - Risks and non-editable regions
+tools:
+  - Word automation bridge
+  - MathType object bridge
+  - backup manager
+  - tracked revision editor
+steps:
+  - id: backup
+    title: Create backup
+    instruction: Require a backup path before any write operation.
+    expected_evidence:
+      - backup path
+  - id: inspect_selection
+    title: Inspect selection
+    instruction: Identify whether the requested edit crosses formulas, fields, references, captions, or headings.
+    expected_evidence:
+      - selection structure
+  - id: plan_revision
+    title: Plan tracked revision
+    instruction: Use tracked revisions for prose and comments for uncertain edits.
+    expected_evidence:
+      - revision plan
+  - id: protect_formulas
+    title: Protect formulas
+    instruction: Treat MathType and equation objects as object boundaries, not plain text.
+    expected_evidence:
+      - formula handling decision
+  - id: verify
+    title: Verify document state
+    instruction: Recheck numbering, citations, formulas, captions, and cross references after changes.
+    expected_evidence:
+      - verification checklist
+safety_rules:
+  - Always back up before writing.
+  - Enable tracked revisions for prose edits.
+  - Never silently overwrite manuscript body text.
+  - Never convert MathType equations into plain text as a fallback.
+  - If MathType is unavailable, report explicit failure instead of pretending success.
+success_criteria:
+  - The edit plan separates prose, formula, caption, and reference changes.
+  - Every write has a backup and verification step.
+  - Formula objects remain object-safe.
+context_usage_pattern: Multi-round manuscript context, local document structure, and formula-safe edit planning.
+provider_requirements:
+  - dry-run can generate an edit plan
+  - real providers must not receive private manuscript text unless the user explicitly supplies it
+evidence_materials:
+  - backup path
+  - revision mode status
+  - formula object inventory
+  - verification checklist

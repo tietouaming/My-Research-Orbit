@@ -1,0 +1,30 @@
+name: Research Orbit CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RESEARCH_ORBIT_PROVIDER: dry-run
+      RESEARCH_ORBIT_FIXED_CREATED_AT: "2026-05-01T00:00:00Z"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        run: pytest -q
+      - name: CLI smoke
+        run: |
+          research-orbit inspect
+          research-orbit providers
+          research-orbit list-workflows
+          research-orbit validate
+          research-orbit ui --help

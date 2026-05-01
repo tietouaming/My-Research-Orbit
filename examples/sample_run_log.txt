@@ -1,0 +1,11 @@
+Command: research-orbit run-workflow --workflow run_log_diagnoser --input sample_run_log.txt
+Status: failed
+
+First error:
+ProviderNotConfiguredError: openai-compatible requires api base URL, API key, and model environment variables.
+
+Context:
+The operator selected a live provider but did not configure the required environment.
+
+Expected diagnosis:
+Use dry-run for CI or set the provider base URL, key, and model explicitly.
